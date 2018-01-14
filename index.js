@@ -10,6 +10,7 @@ var app = express()
   .set('views', path.join(__dirname, 'views'))
   .set('view engine', 'ejs')
 
+// Before saying anything, I know I should have used a for loop
 
 app.get('/', (req, res) =>{
   request('https://fivem.net/', {timeout: 2000}, function (error, response, body) {
@@ -48,7 +49,21 @@ app.get('/', (req, res) =>{
               } else {
                 status.metrics = "<span style='color: red'>Offline</span>";
               }
-              res.render('pages/index', { status })
+              request('https://forum.fivem.net/', {timeout: 2000}, function (error, response, body) {
+                if (!error && body.includes("hidden-login-form")) {
+                  status.forum = "<span style='color: green'>Online</span>";
+                } else {
+                  status.forum = "<span style='color: red'>Offline</span>";
+                }
+                request('https://wiki.fivem.net/', {timeout: 2000}, function (error, response, body) {
+                  if (!error && !body.includes("Error")) {
+                    status.wiki = "<span style='color: green'>Online</span>";
+                  } else {
+                    status.wiki = "<span style='color: red'>Offline</span>";
+                  }
+                  res.render('pages/index', { status })
+                });
+              });
             });
           });
         });
