@@ -10,16 +10,12 @@ I know that this code is shitty, I created this in 15 minutes ¯\_(ツ)_/¯
   </head>
   <body>
     <h1>FiveM status page</h1>
-    <p>Main webserver: <%- status.main %></p>
-    <p>Servers page: <%- status.servers %></p>
-    <p>Servers api: <%- status.serverapi %></p>
-    <p>Runtime: <%- status.runtime %></p>
-    <p>Metrics: <%- status.metrics %></p>
-    <p>Forum: <%- status.forum %></p>
-    <p>Wiki: <%- status.wiki %></p>
-    <p>Key server: <%- status.keymaster %></p>
+    <% status.forEach((s) => { %>
+      <p><%= s[0] %>: <%- s[1] %></p>
+    <% }) %>
     <br>
     <p>Created by beecoding ¯\_(ツ)_/¯</p>
     <p style="font-style: italic">"I know that it looks shitty but at least it works"</p>
+    <a href="https://github.com/BeeCodingOfc/fivemstatus">source code</a>
   </body>
 </html>

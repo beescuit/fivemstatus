@@ -1,75 +1,47 @@
 const express = require('express')
 const request = require('request')
+const { forEach } = require('p-iteration')
 const path = require('path')
-const PORT = process.env.PORT || 5000
+const PORT = 5011
 
-var status = {};
+var online = "<span style='color: green'>Online</span>";
+var offline = "<span style='color: red'>Offline</span>";
+var servers = [["https://fivem.net/", "Main webserver"], ["https://servers.fivem.net/", "Servers page"], ["https://servers-live.fivem.net/", "Servers api", (e, r, b) => {return(!e && !b.includes("Error") && !b.includes("a padding to disable MSIE and Chrome friendly error page"))}], ["https://runtime.fivem.net/", "Runtime"], ["https://metrics.fivem.net/", "Metrics", (e, r, b) => {return(!e && b.includes("Matomo"))}], ["https://forum.fivem.net/", "Forums", (e, r, b) => {return(!e && b.includes("hidden-login-form"))}], ["https://wiki.fivem.net/", "Wiki"], ["https://keymaster.fivem.net/", "Key server"]];
 
 var app = express()
   .use(express.static(path.join(__dirname, 'public')))
   .set('views', path.join(__dirname, 'views'))
   .set('view engine', 'ejs')
 
-// Before saying anything, I know I should have used a for loop
-
-app.get('/', (req, res) =>{
-  request('https://fivem.net/', {timeout: 2000}, function (error, response, body) {
-    if (!error && !body.includes("Error")) {
-      status.main = "<span style='color: green'>Online</span>";
-    } else {
-      status.main = "<span style='color: red'>Offline</span>";
-    }
-    request('https://servers.fivem.net/', {timeout: 2000}, function (error, response, body) {
-      if (!error && !body.includes("Error")) {
-        status.servers = "<span style='color: green'>Online</span>";
-      } else {
-        status.servers = "<span style='color: red'>Offline</span>";
-      }
-      request('https://keymaster.fivem.net/', {timeout: 2000}, function (error, response, body) {
-        if (!error && !body.includes("Error")) {
-          status.keymaster = "<span style='color: green'>Online</span>";
+app.get('/', (req, res) => {
+  var status = [];
+  forEach(servers, async (server, i) => {
+    await request(server[0], function (error, response, body) {
+      if (server[2]) {
+        if (server[2](error, response, body)) {
+          status.push([server[1], online, i]);
         } else {
-          status.keymaster = "<span style='color: red'>Offline</span>";
+          status.push([server[1], offline, i]);
         }
-        request('https://servers-live.fivem.net/', {timeout: 2000}, function (error, response, body) {
-          if (!error && !body.includes("Error") && !body.includes("a padding to disable MSIE and Chrome friendly error page")) {
-            status.serverapi = "<span style='color: green'>Online</span>";
+      } else {
+        if (!error && !body.includes("Error")) {
+          status.push([server[1], online, i]);
+        } else {
+          status.push([server[1], offline, i]);
+        }
+      }
+      if (status.length == servers.length) {
+        status = status.sort((a, b) => {
+          if (a[2] > b[2]) {
+            return 1;
           } else {
-            status.serverapi = "<span style='color: red'>Offline</span>";
+            return -1;
           }
-          request('https://runtime.fivem.net/', {timeout: 2000}, function (error, response, body) {
-            if (!error && !body.includes("Error")) {
-              status.runtime = "<span style='color: green'>Online</span>";
-            } else {
-              status.runtime = "<span style='color: red'>Offline</span>";
-            }
-            request('https://metrics.fivem.net/', {timeout: 2000}, function (error, response, body) {
-              if (!error && body.includes("Matomo")) {
-                status.metrics = "<span style='color: green'>Online</span>";
-              } else {
-                status.metrics = "<span style='color: red'>Offline</span>";
-              }
-              request('https://forum.fivem.net/', {timeout: 2000}, function (error, response, body) {
-                if (!error && body.includes("hidden-login-form")) {
-                  status.forum = "<span style='color: green'>Online</span>";
-                } else {
-                  status.forum = "<span style='color: red'>Offline</span>";
-                }
-                request('https://wiki.fivem.net/', {timeout: 2000}, function (error, response, body) {
-                  if (!error && !body.includes("Error")) {
-                    status.wiki = "<span style='color: green'>Online</span>";
-                  } else {
-                    status.wiki = "<span style='color: red'>Offline</span>";
-                  }
-                  res.render('pages/index', { status })
-                });
-              });
-            });
-          });
-        });
-      });
+        })
+        res.render('pages/index', { status })
+      }
     });
-  });
+  })
 })
 
 
