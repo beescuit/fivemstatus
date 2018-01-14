@@ -44,5 +44,36 @@ app.get('/', (req, res) => {
   })
 })
 
+app.get('/json', (req, res) => {
+  var status = [];
+  forEach(servers, async (server, i) => {
+    await request(server[0], function (error, response, body) {
+      if (server[2]) {
+        if (server[2](error, response, body)) {
+          status.push([server[1], online, i]);
+        } else {
+          status.push([server[1], offline, i]);
+        }
+      } else {
+        if (!error && !body.includes("Error")) {
+          status.push([server[1], online, i]);
+        } else {
+          status.push([server[1], offline, i]);
+        }
+      }
+      if (status.length == servers.length) {
+        status = status.sort((a, b) => {
+          if (a[2] > b[2]) {
+            return 1;
+          } else {
+            return -1;
+          }
+        })
+        res.json(status)
+      }
+    });
+  })
+})
+
 
 app.listen(PORT, () => console.log(`Listening on ${ PORT }`))

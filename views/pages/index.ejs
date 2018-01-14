@@ -7,12 +7,26 @@ I know that this code is shitty, I created this in 15 minutes ¯\_(ツ)_/¯
 <html>
   <head>
     <title>FiveM status page</title>
+    <script src="jquery-3.2.1.min.js"></script>
+    <script type="text/javascript">
+      setInterval(() => {
+        $.get("/json", (data) => {
+          var html = "";
+          data.forEach((s) => {
+            html += `<p>${s[0]}: ${s[1]}</p>`
+          })
+          $(".statuses").html(html);
+        })
+      }, 5000)
+    </script>
   </head>
   <body>
     <h1>FiveM status page</h1>
-    <% status.forEach((s) => { %>
-      <p><%= s[0] %>: <%- s[1] %></p>
-    <% }) %>
+    <div class="statuses">
+      <% status.forEach((s) => { %>
+        <p><%= s[0] %>: <%- s[1] %></p>
+      <% }) %>
+    </div>
     <br>
     <p>Created by beecoding ¯\_(ツ)_/¯</p>
     <p style="font-style: italic">"I know that it looks shitty but at least it works"</p>
