@@ -2,6 +2,7 @@
 <html>
   <head>
     <title>FiveM Status Page</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <script src="jquery-3.2.1.min.js"></script>
     <script type="text/javascript">
       setInterval(() => {
@@ -16,33 +17,51 @@
     </script>
   </head>
   <body>
-    <h1 class="header">FiveM Status Page</h1>
-    <div class="statuses">
-      <% status.forEach((s) => { %>
-        <p><%= s[0] %>: <%- s[1] %></p>
-      <% }) %>
+    <div class="wrapper">
+      <div class="app">
+        <h1 class="header">FiveM Status Page</h1>
+        <div class="statuses">
+          <% status.forEach((s) => { %>
+            <p><%= s[0] %>: <%- s[1] %></p>
+          <% }) %>
+        </div>
+        <br>
+        <p class="footer">Backend by BeeCoding and Frontend by Amorris</p>
+        <a class="footer" style="text-decoration: underline" href="https://github.com/BeeCodingOfc/fivemstatus">Source Code</a>
+      </div>
     </div>
-    <br>
-    <p class="footer">Backend by beecoding and Frontend by Amorris</p>
 
     <!-- This should probably be in a separate file, but meh. -->
     <style>
-    body {
-      background-color: #333;
-      color: #bbb;
-      text-align: center;
-    }
+      body {
+        height: 100vh;
+        margin: 0;
+        font-family: 'Roboto', sans-serif;
+        background-color: #333;
+        color: #bbb;
+      }
 
-    .header {
-      color: #ddd;
-      font-weight: bold;
-    }
+      .wrapper {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
 
-    .footer {
-      color: #666;
-    }
+      .app {
+        text-align: center;
+      }
+
+      .header {
+        color: #ddd;
+        font-weight: bold;
+      }
+
+      .footer {
+        color: #666;
+      }
 
     </style>
-    <a class="footer" style="text-decoration: underline" href="https://github.com/BeeCodingOfc/fivemstatus">Source Code</a>
   </body>
 </html>
