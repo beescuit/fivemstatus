@@ -15,7 +15,7 @@ var app = express()
 
 app.get('/', (req, res) => {
   var status = [];
-  forEach(servers, {timeout: 2000}, async (server, i) => {
+  forEach(servers, async (server, i) => {
     await request(server[0], function (error, response, body) {
       if (server[2]) {
         if (server[2](error, response, body)) {
