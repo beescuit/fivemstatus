@@ -43,7 +43,7 @@ function poll() {
 
 function start() {
   poll();
-  setInterval(poll, 10000);
+  setInterval(poll, 60000);
 }
 
 function getStatus() {
