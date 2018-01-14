@@ -2,7 +2,7 @@ const express = require('express')
 const request = require('request')
 const { forEach } = require('p-iteration')
 const path = require('path')
-const PORT = 5011
+const PORT = process.env.PORT || 5000
 
 var online = "<span style='color: green'>Online</span>";
 var offline = "<span style='color: red'>Offline</span>";
