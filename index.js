@@ -4,9 +4,9 @@ const { forEach } = require('p-iteration')
 const path = require('path')
 const PORT = process.env.PORT || 5000
 
-var online = "<span style='color: green'>Online</span>";
-var offline = "<span style='color: red'>Offline</span>";
-var servers = [["https://fivem.net/", "Main webserver"], ["https://servers.fivem.net/", "Servers page"], ["https://servers-live.fivem.net/", "Servers api", (e, r, b) => {return(!e && !b.includes("Error") && !b.includes("a padding to disable MSIE and Chrome friendly error page"))}], ["https://runtime.fivem.net/", "Runtime"], ["https://metrics.fivem.net/", "Metrics", (e, r, b) => {return(!e && b.includes("Matomo"))}], ["https://forum.fivem.net/", "Forums", (e, r, b) => {return(!e && b.includes("hidden-login-form"))}], ["https://wiki.fivem.net/", "Wiki"], ["https://keymaster.fivem.net/", "Key server"]];
+var online = "<span style='color: " + "#70ff8a" + "'>Online</span>";
+var offline = "<span style='color: " + "#ff7070" + "'>Offline</span>";
+var servers = [["https://fivem.net/", "Main Webserver"], ["https://servers.fivem.net/", "Server List"], ["https://servers-live.fivem.net/", "Server API", (e, r, b) => {return(!e && !b.includes("Error") && !b.includes("a padding to disable MSIE and Chrome friendly error page"))}], ["https://runtime.fivem.net/", "Runtime"], ["https://metrics.fivem.net/", "Metrics", (e, r, b) => {return(!e && b.includes("Matomo"))}], ["https://forum.fivem.net/", "Forums", (e, r, b) => {return(!e && b.includes("hidden-login-form"))}], ["https://wiki.fivem.net/", "Wiki"], ["https://keymaster.fivem.net/", "Keymaster Server"]];
 
 var app = express()
   .use(express.static(path.join(__dirname, 'public')))
