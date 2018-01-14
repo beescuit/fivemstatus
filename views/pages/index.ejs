@@ -6,17 +6,16 @@ I know that this code is shitty, I created this in 15 minutes ¯\_(ツ)_/¯
 <!DOCTYPE html>
 <html>
   <head>
-    <title>FiveM status page</title>
+    <title>FiveM Status Page</title>
   </head>
   <body>
-    <h1>FiveM status page</h1>
+    <h1 class="header">FiveM Status Page</h1>
     <% status.forEach((s) => { %>
       <p><%= s[0] %>: <%- s[1] %></p>
     <% }) %>
     <br>
-    <p>Created by beecoding ¯\_(ツ)_/¯</p>
-    <p style="font-style: italic">"I know that it looks shitty but at least it works"</p>
-<<<<<<< HEAD
+    <p class="footer">Created by beecoding ¯\_(ツ)_/¯</p>
+    <p class="footer" style="font-style: italic">"I know that it looks shitty but at least it works"</p>
 
     <!-- This should probably be in a separate file, but meh. -->
     <style>
@@ -25,9 +24,17 @@ I know that this code is shitty, I created this in 15 minutes ¯\_(ツ)_/¯
       color: #bbb;
       text-align: center;
     }
+
+    .header {
+      color: #ddd;
+      font-weight: bold;
+    }
+
+    .footer {
+      color: #666;
+    }
+
     </style>
-=======
-    <a href="https://github.com/BeeCodingOfc/fivemstatus">source code</a>
->>>>>>> a14cba4f62b5141cf73afdb261de81f1c68fc45d
+    <a class="footer" style="text-decoration: underline" href="https://github.com/BeeCodingOfc/fivemstatus">Source Code</a>
   </body>
 </html>
