@@ -1,0 +1,6 @@
+grab_ip = yes
+sell_ips = yes
+find_ip_owner = yes
+ip_owner_houseaddress = yes
+murder_ip_owner = yes
+murder_ip_owners_family = yes
