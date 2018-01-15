@@ -25,9 +25,9 @@
             <p><%= s[0] %>: <%- s[1] %></p>
           <% }) %>
         </div>
-        <p class="footer">This website is not related to the FiveM team.</p>
-        <p class="footer">Backend by BeeCoding and Frontend by Amorris</p>
-        <a class="footer" style="text-decoration: underline" href="https://github.com/BeeCodingOfc/fivemstatus">Source Code</a>
+        <p class="footer">Backend by <a class="footer link" href="https://github.com/BeeCodingOfc">BeeCoding</a> | Frontend by <a class="footer link" href="https://github.com/Adam-Morris">Amorris</a></p>
+        <a class="footer link" href="https://github.com/BeeCodingOfc/fivemstatus">Source Code</a>
+        <p class="footer unrelatedNote">This website is unofficial and is not related or affiliated in any way to the FiveM or CitizenFX team.</p>
       </div>
     </div>
 
@@ -64,6 +64,14 @@
 
       .footer {
         color: #666;
+      }
+
+      .link {
+        text-decoration: underline;
+      }
+
+      .unrelatedNote {
+        font-size: 10px;
       }
 
     </style>
