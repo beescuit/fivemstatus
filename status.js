@@ -15,15 +15,15 @@ function poll() {
     await request(server[0], function (error, response, body) {
       if (server[2]) {
         if (server[2](error, response, body)) {
-          tmpstatus.push([server[1], online, i]);
+          tmpstatus.push([server[1], online, i, server[0]]);
         } else {
-          tmpstatus.push([server[1], offline, i]);
+          tmpstatus.push([server[1], offline, i, server[0]]);
         }
       } else {
         if (!error && !body.includes("Error")) {
-          tmpstatus.push([server[1], online, i]);
+          tmpstatus.push([server[1], online, i, server[0]]);
         } else {
-          tmpstatus.push([server[1], offline, i]);
+          tmpstatus.push([server[1], offline, i, server[0]]);
         }
       }
       if (tmpstatus.length == servers.length) {
