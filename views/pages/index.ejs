@@ -9,7 +9,7 @@
         $.get("/json", (data) => {
           var html = "";
           data.forEach((s) => {
-            html += `<p>${s[0]}: ${s[1]}</p>`
+            html += `<a style="text-decoration: none; color: #bbb" href="${s[3]}"><p>${s[0]}: ${s[1]}</p></a>`
           })
           $(".statuses").html(html);
         })
@@ -22,7 +22,7 @@
         <h1 class="header">FiveM Status Page</h1>
         <div class="statuses">
           <% status.forEach((s) => { %>
-            <p><%= s[0] %>: <%- s[1] %></p>
+            <a style="text-decoration: none; color: #bbb" href="<%- s[3] %>"><p><%= s[0] %>: <%- s[1] %></p></a>
           <% }) %>
         </div>
         <p class="footer">Backend by <a class="footer link" href="https://github.com/BeeCodingOfc">BeeCoding</a> | Frontend by <a class="footer link" href="https://github.com/Adam-Morris">Amorris</a></p>
