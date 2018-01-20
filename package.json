@@ -14,7 +14,6 @@
     "ejs": "^2.5.7",
     "express": "^4.16.2",
     "p-iteration": "^1.1.5",
-    "ping": "^0.2.2",
     "request": "^2.83.0"
   },
   "devDependencies": {
