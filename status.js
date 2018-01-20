@@ -12,7 +12,7 @@ function poll() {
     request(server[0], {timeout: 5000, time : true}, function (error, response, body) {
       if (server[2]) {
         if (server[2](error, response, body)) {
-          tmpstatus.push([server[1], "<span style='color: " + "#70ff8a" + "'>Online (" + response.elapsedTime + ")ms</span>", i]);
+          tmpstatus.push([server[1], "<span style='color: " + "#70ff8a" + "'>Online (" + response.elapsedTime + "ms)</span>", i]);
         } else {
           tmpstatus.push([server[1], "<span style='color: " + "#ff7070" + "'>Offline</span>", i]);
         }
