@@ -1,8 +1,7 @@
 const request = require('request');
 const { forEach } = require('p-iteration');
 
-var online = "<span style='color: " + "#70ff8a" + "'>Online</span>";
-var offline = "<span style='color: " + "#ff7070" + "'>Offline</span>";
+var ping = require('ping');
 
 var status = [];
 var ready = false;
@@ -15,15 +14,15 @@ function poll() {
     request(server[0], {timeout: 5000}, function (error, response, body) {
       if (server[2]) {
         if (server[2](error, response, body)) {
-          tmpstatus.push([server[1], online, i, server[0]]);
+          tmpstatus.push([server[1], "<span style='color: " + "#70ff8a" + "'>" + response.elapsedTime + "</span>", i]);
         } else {
-          tmpstatus.push([server[1], offline, i, server[0]]);
+          tmpstatus.push([server[1], "<span style='color: " + "#ff7070" + "'>Offline</span>", i]);
         }
       } else {
         if (!error && !body.includes("Error") && (response.statusCode == 200 || response.statusCode == 404)) {
-          tmpstatus.push([server[1], online, i, server[0]]);
+          tmpstatus.push([server[1], "<span style='color: " + "#70ff8a" + "'>" + response.elapsedTime + "</span>", i]);
         } else {
-          tmpstatus.push([server[1], offline, i, server[0]]);
+          tmpstatus.push([server[1], "<span style='color: " + "#ff7070" + "'>Offline</span>", i]);
         }
       }
       if (tmpstatus.length == servers.length) {
@@ -39,6 +38,10 @@ function poll() {
       }
     });
   })
+}
+
+function serverPing(host) {
+    return ping.promise.probe(host.slice(8, host.length-1));
 }
 
 function start() {
