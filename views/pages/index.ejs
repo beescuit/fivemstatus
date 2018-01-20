@@ -10,7 +10,7 @@
         $.get("/json", (data) => {
           var html = "";
           data.forEach((s) => {
-            html += `<p>${s[0]}: ${s[1]}</p>`
+            html += `<a style="text-decoration: none; color: #bbb" href="${s[3]}"><p>${s[0]}: ${s[1]}</p></a>`
           })
           $(".statuses").html(html);
         })
@@ -23,12 +23,12 @@
         <h1 class="header">FiveM Status Page</h1>
         <div class="statuses">
           <% status.forEach((s) => { %>
-            <p><%= s[0] %>: <%- s[1] %></p>
+            <a style="text-decoration: none; color: #bbb" href="<%- s[3] %>"><p><%= s[0] %>: <%- s[1] %></p></a>
           <% }) %>
         </div>
         <p class="footer">Backend by <a class="footer link" href="https://github.com/BeeCodingOfc">BeeCoding</a> | Frontend by <a class="footer link" href="https://github.com/Adam-Morris">Amorris</a></p>
         <a class="footer link" href="https://github.com/BeeCodingOfc/fivemstatus">Source Code</a>
-        <p class="footer unrelatedNote">This website is unofficial and is not related or affiliated in any way to the FiveM or CitizenFX team.</p>
+        <p class="footer unrelatedNote">This website is unofficial and is not related and/or affiliated in any way to FiveM or the CitizenFX Collective.</p>
       </div>
     </div>
 
