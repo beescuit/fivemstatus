@@ -11,7 +11,7 @@ function poll() {
   forEach(servers, async (server, i) => {
     request(server[0], {timeout: 5000, time : true}, function (error, response) {
       if (!error && (response.statusCode == 200 || response.statusCode == 404)) {
-        tmpstatus.push([server[1], `<span style='color: #70ff8a'>Online (${response.elapsedTime}ms</span>` , i]);
+        tmpstatus.push([server[1], `<span style='color: #70ff8a'>Online (${response.elapsedTime}ms)</span>` , i]);
       } else {
         tmpstatus.push([server[1], `<span style='color: #ff7070'>Offline</span>`, i]);
       }
