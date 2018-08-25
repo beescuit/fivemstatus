@@ -8,7 +8,7 @@
     <script type="text/javascript">
       setInterval(() => {
         $.get("/json", (data) => {
-          var html = data.map(({url, name, online}) => {
+          let html = data.map(({url, name, online}) => {
             return `<a style="text-decoration: none; color: #bbb" href="${url}"><p>${name}: ${online ? `<span style='color: #70ff8a'>Online (${online}ms)</span>` : `<span style='color: #ff7070'>Offline</span>`}</p></a>`
           })
           $(".statuses").html(html)
