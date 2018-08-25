@@ -1,9 +1,9 @@
-const express = require('express');
-const path = require('path');
-const status = require('./status.js');
-const PORT = process.env.PORT || 5000;
+const express = require('express')
+const path = require('path')
+const status = require('./status.js')
+const PORT = process.env.PORT || 5000
 
-status.start();
+status.start()
 
 var app = express()
   .use(express.static(path.join(__dirname, 'public')))
@@ -18,5 +18,4 @@ app.get('/json', (req, res) => {
   res.json(status.getStatus())
 })
 
-
-app.listen(PORT, () => console.log(`Listening on port ${ PORT }`))
+app.listen(PORT, () => console.log(`Listening on port ${PORT}`))
