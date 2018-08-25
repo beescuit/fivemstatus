@@ -13,8 +13,8 @@
   "dependencies": {
     "ejs": "^2.5.7",
     "express": "^4.16.2",
-    "p-iteration": "^1.1.5",
-    "request": "^2.83.0"
+    "request": "^2.83.0",
+    "request-promise-native": "^1.0.5"
   },
   "devDependencies": {
     "tape": "^4.7.0"

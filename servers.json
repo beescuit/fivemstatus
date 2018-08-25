@@ -1,0 +1,11 @@
+[
+    {"name":"Main Webserver","url":"https://fivem.net/"},
+    {"name":"Server List","url":"https://servers.fivem.net/"},
+    {"name":"Server API","url":"https://servers-live.fivem.net/api/servers/proto"},
+    {"name":"Runtime","url":"https://runtime.fivem.net/"},
+    {"name":"Metrics","url":"https://metrics.fivem.net/"},
+    {"name":"Forums","url":"https://forum.fivem.net/"},
+    {"name":"Wiki","url":"https://wiki.fivem.net/"},
+    {"name":"Keymaster Server","url":"https://keymaster.fivem.net/"},
+    {"name":"Lambda","url":"https://lambda.fivem.net/"}
+]

@@ -8,9 +8,8 @@
     <script type="text/javascript">
       setInterval(() => {
         $.get("/json", (data) => {
-          var html = "";
-          data.forEach((s) => {
-            html += `<a style="text-decoration: none; color: #bbb" href="${s[3]}"><p>${s[0]}: ${s[1]}</p></a>`
+          var html = data.map(({url, name, online}) => {
+            return `<a style="text-decoration: none; color: #bbb" href="${url}"><p>${name}: ${online ? `<span style='color: #70ff8a'>Online (${online}ms)</span>` : `<span style='color: #ff7070'>Offline</span>`}</p></a>`
           })
           $(".statuses").html(html);
         })
@@ -22,8 +21,8 @@
       <div class="app">
         <h1 class="header">FiveM Status Page</h1>
         <div class="statuses">
-          <% status.forEach((s) => { %>
-            <a style="text-decoration: none; color: #bbb" href="<%- s[3] %>"><p><%= s[0] %>: <%- s[1] %></p></a>
+          <% status.forEach(({url, name, online}) => { %>
+            <a style="text-decoration: none; color: #bbb" href="<%- url %>"><p><%= name %>: <%- online ? `<span style='color: #70ff8a'>Online (${online}ms)</span>` : `<span style='color: #ff7070'>Offline</span>` %></p></a>
           <% }) %>
         </div>
         <p class="footer">Backend by <a class="footer link" href="https://github.com/BeeCodingOfc">BeeCoding</a> | Frontend by <a class="footer link" href="https://github.com/Adam-Morris">Amorris</a></p>

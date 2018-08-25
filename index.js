@@ -1,6 +1,5 @@
 const express = require('express');
 const path = require('path');
-const request = require('request');
 const status = require('./status.js');
 const PORT = process.env.PORT || 5000;
 
@@ -20,4 +19,4 @@ app.get('/json', (req, res) => {
 })
 
 
-app.listen(PORT, () => console.log(`Listening on ${ PORT }`))
+app.listen(PORT, () => console.log(`Listening on port ${ PORT }`))
