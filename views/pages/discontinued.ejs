@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>FiveM Status Page</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <link rel="icon" type="image/png" href="https://wiki.fivem.net/w/images/thumb/f/f7/FiveMblack.png/300px-FiveMblack.png">
+    <script src="jquery-3.2.1.min.js"></script>
+    <script>
+      let seconds = 5
+      setInterval(() => {
+        if (seconds === 0) window.location = 'https://status.fivem.net/'
+        seconds -= 1
+        $('#seconds').html(seconds)
+      }, 1000)
+    </script>
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="app">
+        <h1 class="header">FiveM Status Page</h1>
+        <h2>Hey! This website has been discontinued due to the creation of a official FiveM status page. You can check it out here: <a href="https://status.fivem.net/" style="color: #3ea4dc">https://status.fivem.net/</a></h2>
+        <p>Sorry for leaving this online (and not working) for a while lol</p>
+        <p>In case you have any questions I'll gladly answer them (IM NOT FROM THE FIVEM TEAM OK???) My discord is Bee#1111 just in case</p>
+        <p>Redirecting you to the official website in <span id="seconds">5</span> seconds...</p>
+      </div>
+    </div>
+
+    <!-- This should probably be in a separate file, but meh. -->
+    <style>
+      p {
+        margin: 0
+      }
+
+      body {
+        height: 100vh;
+        margin: 0;
+        font-family: 'Roboto', sans-serif;
+        background-color: #333;
+        color: #bbb;
+      }
+
+      .statuses {
+        padding-bottom: 0.5em;
+      }
+
+      .wrapper {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .app {
+        text-align: center;
+      }
+
+      .header {
+        color: #ddd;
+        font-weight: bold;
+      }
+
+      .footer {
+        color: #666;
+      }
+
+      .link {
+        text-decoration: underline;
+      }
+
+      .unrelatedNote {
+        font-size: 10px;
+      }
+
+    </style>
+  </body>
+</html>

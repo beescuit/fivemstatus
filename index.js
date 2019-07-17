@@ -11,7 +11,8 @@ var app = express()
   .set('view engine', 'ejs')
 
 app.get('/', (req, res) => {
-  res.render('pages/index', { status: status.getStatus() })
+  // res.render('pages/index', { status: status.getStatus() })
+  res.render('pages/discontinued')
 })
 
 app.get('/json', (req, res) => {
