@@ -5,8 +5,8 @@ let servers = require('./servers.json')
 
 async function poll () {
   status = await Promise.all(servers.map(async ({url, name}) => {
-    let response = await rp.head({url, simple: false, resolveWithFullResponse: true, timeout: 5000, time: true}).catch(e => e)
-    let online = (response.statusCode === 200 || response.statusCode === 404) ? response.elapsedTime : false
+    let response = await rp.head({url, simple: false, resolveWithFullResponse: true, timeout: 5000, time: true, headers: { 'User-Agent': 'github.com/beescuit/fivemstatus' }}).catch(e => e)
+    let online = (response.statusCode === 200 || response.statusCode === 404 || response.statusCode === 403) ? response.elapsedTime : false
     return {url, name, online}
   }))
 }
